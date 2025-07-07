@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>
+        {% if title %}
+            Flask Blog - {{title}}
+
+        {% else %}
+            Flask Blog
+
+        {% endif %}
+        
+    </title> 
+    <h1>Welcome to the Home Page</h1>
+</head>
+<body>
+    {% for post in posts %}
+        <h1>{{post.heading}}</h1>
+        <p>{{ post.content }}</p>
+        <p>Author: {{ post.author }}</p>
+    {% endfor %}
+</body>
+</html>
