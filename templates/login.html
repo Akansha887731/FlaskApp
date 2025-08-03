@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Login</h2>
+                    {# Show a summary of form errors at the top #}
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            Please fix the errors below and try again.
+                        </div>
+                    {% endif %}
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                    
+                        <div class="mb-3">
+                            {{ form.email.label(class="form-label") }}
+                            {{ form.email(
+                                class="form-control" + (" is-invalid" if form.email.errors else ""),
+                                placeholder="Enter email"
+                            ) }}
+                            {% for error in form.email.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.password.label(class="form-label") }}
+                            {{ form.password(
+                                class="form-control" + (" is-invalid" if form.password.errors else ""),
+                                placeholder="Enter password"
+                            ) }}
+                            {% for error in form.password.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-check mt-3">
+                            {{ form.remember(class="form-check-input") }}
+                            {{ form.remember.label(class="form-check-label") }}
+                        </div>
+                        
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary btn-block") }}
+                        </div>
+
+
+                        <div class="text-center mt-3">
+                            <a href="#">Forgot Password?</a>
+                        </div>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <small>Need an account? <a href="{{ url_for('register') }}">Register here</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,22 +1,16 @@
-<html>
-<head>
-    <title>
-        {% if title %}
-            Flask Blog - {{title}}
-
-        {% else %}
-            Flask Blog
-
-        {% endif %}
-        
-    </title> 
+{% extends "layout.html" %}
+{% block content %}
     <h1>Welcome to the Home Page</h1>
-</head>
-<body>
     {% for post in posts %}
-        <h1>{{post.heading}}</h1>
-        <p>{{ post.content }}</p>
-        <p>Author: {{ post.author }}</p>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <a class="me-2" href="#">{{ post.author }}</a>
+                    <small class="text-muted">{{ post.date_posted }}</small>
+                </div>
+                <h2 class="card-title"><a class="article-title" href="#">{{ post.title }}</a></h2>
+                <p class="card-text">{{ post.content }}</p>
+            </div>
+        </div>
     {% endfor %}
-</body>
-</html>
+{% endblock content %}
